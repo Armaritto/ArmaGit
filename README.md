@@ -53,3 +53,7 @@ git rebase [branch name]
 ```
 #### Merge vs Rebase
 `git merge` preserves the original branching structure, while `git rebase` creates a cleaner, linear history by rewriting commit history. The choice between the two depends on the project's collaboration workflow and the desired commit history structure.
+
+
+<br><br>
+### Stay tuned for updates! Coming soon.
