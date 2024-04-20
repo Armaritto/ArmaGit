@@ -47,7 +47,7 @@ A command used in Git to integrate changes from one branch into another. It comb
 git merge [branch name]
 ```  
 - ### Git Rebase 
-Rebasing essentially takes a set of commits, "copies" them, and plops them down somewhere else. It allows you to rewrite the commit history of your branch by moving, combining, or altering commits, providing a cleaner and more linear history for your project.
+Rebasing essentially takes a set of commits, copies them, and plops them down somewhere else. It allows you to rewrite the commit history of your branch by moving, combining, or altering commits, providing a cleaner and more linear history for your project.
 ```
 git rebase [branch name]
 ```
