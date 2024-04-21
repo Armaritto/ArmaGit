@@ -76,7 +76,12 @@ Discard the changes from the top of the stack list
 ```
 git stash drop
 ```
-
+- ### Git Status
+Staged in Git refers to the state of changes that have been marked for inclusion in the next commit, allowing for selective preparation and organization of commit snapshots.
+Staged changes will appear under the "Changes to be committed" section after running:
+```
+git status
+```
 ## Git Branches
 - ### Git Create Branches 
 Allow you to work on multiple versions of your project simultaneously, keeping changes isolated until they're ready to be merged.
