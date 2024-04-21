@@ -120,7 +120,7 @@ git rebase [branch name]
 #### Merge vs Rebase
 `git merge` preserves the original branching structure, while `git rebase` creates a cleaner, linear history by rewriting commit history. The choice between the two depends on the project's collaboration workflow and the desired commit history structure.
 
-- ## Relative Refs
+## Relative Refs
 Shortcuts or references that allow you to identify commits relative to their current position in the commit history. They provide a convenient way to specify commits without needing to know or remember their full commit hashes.
 - ### Caret `^` Operator
   Moving upwards one commit at a time with `^`
