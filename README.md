@@ -26,8 +26,21 @@ To view a history of commits in your repository and see the details of each comm
 ```
 git log
 ```
+- ### Detaching HEAD
+`HEAD` is the symbolic name for the currently checked out commit -- it's essentially what commit you're working on top of. <br>
+`Detaching HEAD` refers to when the HEAD reference in a Git repository points directly to a commit hash instead of pointing to a branch name. <br>
+```
+git checkout [commit_hash]
+```
+you'll end up in a detached HEAD state because you're directly checking out a specific commit.
+```
+git checkout [branch_name]
+```
+you'll be on the branch and HEAD will point to the branch reference. <br><br>
+In summary, detaching HEAD is a temporary state that allows you to inspect and work with a specific commit directly. However, it's important to switch back to a branch or create a new branch if you intend to make further changes to avoid losing your work.
+
 ## Git Branches
-- ### Git Branches 
+- ### Git Create Branches 
 Allow you to work on multiple versions of your project simultaneously, keeping changes isolated until they're ready to be merged.
 ```
 git branch [branch name]
@@ -40,6 +53,10 @@ git checkout [branch name]
 To make a new branch and checkout on it in one shortcut you can use
 ```
 git checkout -b [branch name]
+```
+To change the pointer of a branch and make it point to another one, you can use
+```
+git branch -f [branch-1] [branch-2]
 ```
 - ### Git Merge 
 A command used in Git to integrate changes from one branch into another. It combines the changes made in a source branch with the target branch, creating a new merge commit if necessary.
@@ -54,6 +71,18 @@ git rebase [branch name]
 #### Merge vs Rebase
 `git merge` preserves the original branching structure, while `git rebase` creates a cleaner, linear history by rewriting commit history. The choice between the two depends on the project's collaboration workflow and the desired commit history structure.
 
+- ## Relative Refs
+Shortcuts or references that allow you to identify commits relative to their current position in the commit history. They provide a convenient way to specify commits without needing to know or remember their full commit hashes.
+- ### Caret `^` Operator
+  Moving upwards one commit at a time with `^`
+  ```
+  git checkout main^
+  ```
+- ### Tilde `~` Notation
+  Moving upwards a number of times with `~`
+  ```
+  git checkout HEAD~3
+  ```
 ## Git Remote
 - ### Git Clone
 A command to create a copy of an existing Git repository on your local machine.
