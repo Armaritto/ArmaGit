@@ -82,6 +82,11 @@ Staged changes will appear under the "Changes to be committed" section after run
 ```
 git status
 ```
+- ### Git Reset
+To Clear staged area and rewrite working tree from a specified commit we use
+```
+git reset --hard [commit]
+```
 ## Git Branches
 - ### Git Create Branches 
 Allow you to work on multiple versions of your project simultaneously, keeping changes isolated until they're ready to be merged.
