@@ -54,6 +54,29 @@ git rebase [branch name]
 #### Merge vs Rebase
 `git merge` preserves the original branching structure, while `git rebase` creates a cleaner, linear history by rewriting commit history. The choice between the two depends on the project's collaboration workflow and the desired commit history structure.
 
-
+## Git Remote
+- ### Git Clone
+A command to create a copy of an existing Git repository on your local machine.
+```
+git clone [URL]
+```
+- ### Git Fetch
+Downloads new data from the remote repository but does not integrate it into your working branch. It updates your local copy of remote branches, tags, and commits, allowing you to see what changes have occurred in the remote repository.
+```
+git fetch
+```
+- ### Git Pull
+Integrates new data into your current working branch.
+```
+git pull [remote_name] [branch_name]
+```
+While there is a shortcut to `pull` from the current repository `origin` and merge in the `current branch`
+```
+git pull
+```
+### Fetch vs Pull
+`git pull` is essentially a combination of `git fetch` followed by `git merge`. <br>
+`git fetch` when you want to see what changes have been made in the remote repository without integrating them into your local branch immediately. It's useful for reviewing changes before merging or rebasing. <br>
+`git pull` when you want to fetch changes from the remote repository and automatically merge them into your current working branch. It's convenient for quickly updating your local branch with changes from the remote repository.
 <br><br>
 ### Stay tuned for updates! Coming soon.
