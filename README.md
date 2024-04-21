@@ -54,10 +54,11 @@ To make a new branch and checkout on it in one shortcut you can use
 ```
 git checkout -b [branch name]
 ```
-To change the pointer of a branch and make it point to another one, you can use
+<!-- To change the pointer of a branch and make it point to another one, you can use
 ```
 git branch -f [branch-1] [branch-2]
 ```
+-->
 - ### Git Merge 
 A command used in Git to integrate changes from one branch into another. It combines the changes made in a source branch with the target branch, creating a new merge commit if necessary.
 ```
