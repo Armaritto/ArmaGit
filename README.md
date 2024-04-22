@@ -32,7 +32,7 @@ git log branch2..branch1
 ```
 To show the commits that changed a file, even across renames
 ```
-git log --follow [file.extension]
+git log --follow -- [file.extension]
 ```
 - ### Git Diff
 Display the differences of what is changed but not staged
