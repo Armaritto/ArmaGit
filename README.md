@@ -47,18 +47,6 @@ Display the differences of what is in branch1 and not in branch2
 ```
 git diff branch2..branch1
 ```
-- ### Detaching HEAD
-`HEAD` is the symbolic name for the currently checked out commit -- it's essentially what commit you're working on top of. <br>
-`Detaching HEAD` refers to when the HEAD reference in a Git repository points directly to a commit hash instead of pointing to a branch name. <br>
-```
-git checkout [commit_hash]
-```
-you'll end up in a detached HEAD state because you're directly checking out a specific commit.
-```
-git checkout [branch_name]
-```
-you'll be on the branch and HEAD will point to the branch reference. <br><br>
-In summary, detaching HEAD is a temporary state that allows you to inspect and work with a specific commit directly. However, it's important to switch back to a branch or create a new branch if you intend to make further changes to avoid losing your work.
 - ### Git Stash
 Temporarily store modified files in order to change branches
 ```
@@ -86,6 +74,23 @@ git status
 To Clear staged area and rewrite working tree from a specified commit we use
 ```
 git reset --hard [commit]
+```
+- ### Detaching HEAD
+`HEAD` is the symbolic name for the currently checked out commit -- it's essentially what commit you're working on top of. <br>
+`Detaching HEAD` refers to when the HEAD reference in a Git repository points directly to a commit hash instead of pointing to a branch name. <br>
+```
+git checkout [commit_hash]
+```
+you'll end up in a detached HEAD state because you're directly checking out a specific commit.
+```
+git checkout [branch_name]
+```
+you'll be on the branch and HEAD will point to the branch reference. <br><br>
+In summary, detaching HEAD is a temporary state that allows you to inspect and work with a specific commit directly. However, it's important to switch back to a branch or create a new branch if you intend to make further changes to avoid losing your work.
+- ### Cherry-Pick
+Lets you copy a single commit from one branch to another, allowing you to apply specific changes without merging entire branches.
+```
+git cherry-pick [commit1-hash] [commit-hash-2] ...
 ```
 ## Git Branches
 - ### Git Create Branches 
