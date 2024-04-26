@@ -210,4 +210,4 @@ git commit
 git put us into detached HEAD mode and then did not update `origin/main` when we added a new commit. This is because `origin/main` will only update when the remote updates.
 
 <br><br>
-### Stay tuned for updates! Coming soon.
+### I'm currently in the process of learning Git! Whenever I pick up something new, I jot it down right here. Stay tuned for updates!
