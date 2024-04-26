@@ -174,9 +174,40 @@ While there is a shortcut to `pull` from the current repository `origin` and mer
 ```
 git pull
 ```
-### Fetch vs Pull
+- ### Fetch vs Pull
 `git pull` is essentially a combination of `git fetch` followed by `git merge`. <br>
 `git fetch` when you want to see what changes have been made in the remote repository without integrating them into your local branch immediately. It's useful for reviewing changes before merging or rebasing. <br>
 `git pull` when you want to fetch changes from the remote repository and automatically merge them into your current working branch. It's convenient for quickly updating your local branch with changes from the remote repository.
+- ### Main Commits Rejection
+If you work on a large collaborative team and you commit directly to main locally and try pushing you will be greeted with a message similar to this:
+```
+! [remote rejected] main -> main (TF402455: Pushes to this branch are not permitted; you must use a pull request to update this branch.)
+```
+The remote rejected the push of commits directly to main because of the policy on main requiring pull requests to instead be used.
+So the solution is to create another branch called feature and push that to the remote. Also reset your main back to be in sync with the remote.
+```
+git checkout -b feature
+git add .
+git commit -m "Implemented feature"
+git push origin feature
+git checkout main
+git fetch origin
+git reset --hard origin/main
+```
+
+## Git Origins
+`Origin` in Git is a convenient label for the default remote repository from which you cloned your local repository, allowing you to interact with it easily using Git commands. <br>
+`origin/main`: This type of branch is called a remote branch; remote branches have special properties because they serve a unique purpose.<br>
+Remote branches reflect the state of remote repositories (since you last talked to those remote repositories). They help you understand the difference between your local work and what work is public -- a critical step to take before sharing your work with others. <br>
+Remote branches have the special property that when you check them out, you are put into detached HEAD mode. Git does this on purpose because you can't work on these branches directly; you have to work elsewhere and then share your work with the remote (after which your remote branches will be updated).
+
+To be clear: Remote branches are on your local repository, not on the remote repository.<br>
+Lets check out a remote branch, make a commit and see what happens.
+```
+git checkout origin/main
+git commit
+```
+git put us into detached HEAD mode and then did not update `origin/main` when we added a new commit. This is because `origin/main` will only update when the remote updates.
+
 <br><br>
 ### Stay tuned for updates! Coming soon.
