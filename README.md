@@ -194,6 +194,10 @@ git checkout main
 git fetch origin
 git reset --hard origin/main
 ```
+However, if you don't have write access to the repository you should do the following instead:
+1- Create a fork of the repository on your GitHub account.
+2- Run the above commands.
+3- Create a pull request as a contribution to the main repository.
 
 ## Git Origins
 `Origin` in Git is a convenient label for the default remote repository from which you cloned your local repository, allowing you to interact with it easily using Git commands. <br>
