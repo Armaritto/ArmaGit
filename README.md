@@ -8,7 +8,7 @@ Used in Git to stage changes for commit. When you make modifications to files in
 ```
 git add [file.extenstion]
 ```
-To stage all changes in the current directory
+To stage all changes in the current directory 
 ```
 git add .
 ```
