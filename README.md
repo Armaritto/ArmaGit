@@ -213,5 +213,33 @@ git commit
 ```
 git put us into detached HEAD mode and then did not update `origin/main` when we added a new commit. This is because `origin/main` will only update when the remote updates.
 
+### Git Bisect
+Use binary search to find the commit that introduced a bug
+
+Basic bisect commands: start, bad, good
+As an example, suppose you are trying to find the commit that broke a feature that was known to work in version v2.6.13-rc2 of your project. You start a bisect session as follows:
+```
+git bisect start
+git bisect bad                 # Current version is bad
+git bisect good v2.6.13-rc2    # v2.6.13-rc2 is known to be good
+```
+Once you have specified at least one bad and one good commit, git bisect selects a commit in the middle of that range of history, checks it out, and outputs something similar to the following:
+
+Bisecting: 675 revisions left to test after this (roughly 10 steps)
+You should now compile the checked-out version and test it. If that version works correctly, type
+```
+git bisect good
+```
+If that version is broken, type
+
+```
+git bisect bad
+```
+Then git bisect will respond with something like
+
+Bisecting: 337 revisions left to test after this (roughly 9 steps)
+Keep repeating the process: compile the tree, test it, and depending on whether it is good or bad run git bisect good or git bisect bad to ask for the next commit that needs testing.
+
+
 <br><br>
 ### I'm still in the process of learning Git! Whenever I pick up something new, I jot it down right here. Stay tuned for updates!
