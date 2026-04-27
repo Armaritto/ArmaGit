@@ -1,245 +1,362 @@
-# ArmaGit - Your Gateway to Git Mastery
-Welcome to [ArmaGit](https://github.com/Armaritto/ArmaGit) , your ultimate Git guide! Whether you're a beginner or a pro, find everything you need to know about Git commands. Dive into the cheat sheets, tips, and tutorials to master version control, collaborate efficiently, and manage projects effectively. Let's unlock the secrets to seamless Git mastery together! <br>
+# ArmaGit — Git Mastery Reference
+
+> A comprehensive Git command reference for developers at every level. From first commits to remote workflows, everything you need in one place. <br>
 Thanks [learngitbranching.js](https://learngitbranching.js.org/), my understanding of Git has significantly improved.
 
-## Git Commits
-- ### Git Add 
-Used in Git to stage changes for commit. When you make modifications to files in your working directory, `git add` allows you to selectively choose which changes to include in the next commit. 
-```
-git add [file.extenstion]
-```
-To stage all changes in the current directory 
-```
+---
+
+## Table of Contents
+
+- [Working with Commits](#working-with-commits)
+- [Branching](#branching)
+- [Relative References](#relative-references)
+- [Remote Repositories](#remote-repositories)
+- [Origins & Remote Branches](#origins--remote-branches)
+- [Debugging with Bisect](#debugging-with-bisect)
+
+---
+
+## Working with Commits
+
+### Staging Changes — `git add`
+
+Selectively stage changes from your working directory for the next commit.
+
+```bash
+# Stage a specific file
+git add <file.ext>
+
+# Stage all changes in the current directory
 git add .
 ```
-- ### Git Commit 
-Records a snapshot of all the (tracked) files in your directory. It's like a giant copy and paste.
+
+---
+
+### Recording Changes — `git commit`
+
+Saves a snapshot of all staged (tracked) files in your repository.
+
+```bash
+# Commit with a message
+git commit -m "<your commit message>"
+
+# Stage all tracked files and commit in one step
+# Note: does not include new, untracked files
+git commit -a -m "<your commit message>"
 ```
-git commit -m "[your_commit_message]"
-```
-To combine `git add` and `git commit` in a single command, you can use the `-a` flag with git commit. However, this command won't stage new files that haven't been previously tracked by Git.
-```
-git commit -a -m "[your_commit_message]"
-```
-- ### Git Log 
-To view a history of commits in your repository and see the details of each commit, including the commit message, author, timestamp, and the changes made.
-```
+
+---
+
+### Viewing History — `git log`
+
+Inspect the commit history of your repository.
+
+```bash
+# Full commit history
 git log
-```
-To show the commits on branch1 and not in branch2
-```
+
+# Show commits in branch1 that are not in branch2
 git log branch2..branch1
+
+# Show commits that modified a specific file (follows renames)
+git log --follow -- <file.ext>
 ```
-To show the commits that changed a file, even across renames
-```
-git log --follow -- [file.extension]
-```
-- ### Git Diff
-Display the differences of what is changed but not staged
-```
+
+---
+
+### Comparing Changes — `git diff`
+
+Examine differences between states of your repository.
+
+```bash
+# Changes not yet staged
 git diff
-```
-Display the differences of what is staged but not yet commited
-```
+
+# Changes staged but not yet committed
 git diff --staged
-```
-Display the differences of what is in branch1 and not in branch2
-```
+
+# Changes in branch1 not present in branch2
 git diff branch2..branch1
 ```
-- ### Git Stash
-Temporarily store modified files in order to change branches
-```
+
+---
+
+### Stashing Work — `git stash`
+
+Temporarily shelve uncommitted changes so you can switch context.
+
+```bash
+# Stash current changes
 git stash
-```
-List stack-ordered of stashed file changes
-```
+
+# List all stashed entries
 git stash list
-```
-Write working from the top of the stash stack
-```
+
+# Restore the most recent stash
 git stash pop
-```
-Discard the changes from the top of the stack list
-```
+
+# Discard the most recent stash
 git stash drop
 ```
-- ### Git Status
-Staged in Git refers to the state of changes that have been marked for inclusion in the next commit, allowing for selective preparation and organization of commit snapshots.
-Staged changes will appear under the "Changes to be committed" section after running:
-```
+
+---
+
+### Checking State — `git status`
+
+Shows the state of your working directory and staging area.
+
+```bash
 git status
 ```
-- ### Git Reset
-To Clear staged area and rewrite working tree from a specified commit we use
-```
-git reset --hard [commit]
-```
-- ### Detaching HEAD
-`HEAD` is the symbolic name for the currently checked out commit -- it's essentially what commit you're working on top of. <br>
-`Detaching HEAD` refers to when the HEAD reference in a Git repository points directly to a commit hash instead of pointing to a branch name. <br>
-```
-git checkout [commit_hash]
-```
-you'll end up in a detached HEAD state because you're directly checking out a specific commit.
-```
-git checkout [branch_name]
-```
-you'll be on the branch and HEAD will point to the branch reference. <br><br>
-In summary, detaching HEAD is a temporary state that allows you to inspect and work with a specific commit directly. However, it's important to switch back to a branch or create a new branch if you intend to make further changes to avoid losing your work.
-- ### Cherry-Pick
-Lets you copy a single commit from one branch to another, allowing you to apply specific changes without merging entire branches.
-```
-git cherry-pick [commit1-hash] [commit-hash-2] ...
-```
-## Git Branches
-- ### Git Create Branches 
-Allow you to work on multiple versions of your project simultaneously, keeping changes isolated until they're ready to be merged.
-```
-git branch [branch name]
-```
-- ### Git Checkout 
-Lets you switch between different branches or revert files to previous states within your repository effortlessly.
-```
-git checkout [branch name]
-```
-To make a new branch and checkout on it in one shortcut you can use
-```
-git checkout -b [branch name]
-```
-<!-- To change the pointer of a branch and make it point to another one, you can use
-```
-git branch -f [branch-1] [branch-2]
-```
--->
-- ### Git Merge 
-A command used in Git to integrate changes from one branch into another. It combines the changes made in a source branch with the target branch, creating a new merge commit if necessary.
-```
-git merge [branch name]
-```  
-- ### Git Rebase 
-Rebasing essentially takes a set of commits, copies them, and plops them down somewhere else. It allows you to rewrite the commit history of your branch by moving, combining, or altering commits, providing a cleaner and more linear history for your project.
-```
-git rebase [branch name]
-```
-#### Merge vs Rebase
-`git merge` preserves the original branching structure, while `git rebase` creates a cleaner, linear history by rewriting commit history. The choice between the two depends on the project's collaboration workflow and the desired commit history structure. <br><br>
-Imagine you clone a repository on Monday and start dabbling on a side feature. By Friday you are ready to publish your feature -- but oh no! Your coworkers have written a bunch of code during the week that's made your feature out of date (and obsolete). They've also published these commits to the shared remote repository, so now your work is based on an old version of the project that's no longer relevant.
 
-In this case, the command `git push` is ambiguous. If you run `git push`, should git change the remote repository back to what it was on Monday? Should it try to add your code in while not removing the new code? Or should it totally ignore your changes since they are totally out of date?
+Staged changes appear under **"Changes to be committed"**. Staging lets you selectively build commits from your working changes.
 
-Because there is so much ambiguity in this situation (where history has diverged), git doesn't allow you to push your changes. It actually forces you to incorporate the latest state of the remote before being able to share your work.
+---
 
-How do you resolve this situation? It's easy, all you need to do is `base` your work off of the most recent version of the remote branch.
+### Undoing Changes — `git reset`
+
+Resets the staging area and rewrites the working tree to match a specific commit.
+
+```bash
+git reset --hard <commit>
 ```
+
+> ⚠️ **Warning:** `--hard` is destructive. Any uncommitted changes will be permanently lost.
+
+---
+
+### Detaching HEAD
+
+`HEAD` is the symbolic pointer to your currently checked-out commit. When you check out a commit directly (rather than a branch), HEAD enters a **detached** state.
+
+```bash
+# Detach HEAD to a specific commit
+git checkout <commit-hash>
+
+# Re-attach HEAD to a branch
+git checkout <branch-name>
+```
+
+> Detached HEAD is useful for inspecting history, but avoid making new commits in this state without first creating a branch — your work may otherwise be unreachable.
+
+---
+
+### Cherry-Picking — `git cherry-pick`
+
+Apply specific commits from one branch onto another, without merging entire branches.
+
+```bash
+git cherry-pick <commit-hash-1> <commit-hash-2> ...
+```
+
+---
+
+## Branching
+
+### Creating Branches
+
+Branches let you work on isolated features or fixes in parallel.
+
+```bash
+git branch <branch-name>
+```
+
+---
+
+### Switching Branches — `git checkout`
+
+Move between branches or restore files to a previous state.
+
+```bash
+# Switch to an existing branch
+git checkout <branch-name>
+
+# Create a new branch and switch to it immediately
+git checkout -b <branch-name>
+```
+
+---
+
+### Merging — `git merge`
+
+Integrate changes from one branch into another. Creates a merge commit when the histories have diverged.
+
+```bash
+git merge <branch-name>
+```
+
+---
+
+### Rebasing — `git rebase`
+
+Replay commits from your branch on top of another, producing a clean, linear history.
+
+```bash
+git rebase <branch-name>
+```
+
+---
+
+### Merge vs. Rebase
+
+| | `git merge` | `git rebase` |
+|---|---|---|
+| **History** | Preserves branching structure | Rewrites to a linear history |
+| **Commit graph** | Non-linear, shows true history | Linear, easier to read |
+| **Best for** | Public/shared branches | Local feature cleanup |
+
+**Typical workflow when remote has diverged:**
+
+```bash
+# With rebase (cleaner history)
 git pull --rebase
 git push
-```
-Let's check out the same thing but with merge instead. 
 
-Although git merge doesn't move your work (and instead just creates a merge commit), it's a way to tell git that you have incorporated all the changes from the remote. This is because the remote branch is now an ancestor of your own branch, meaning your commit reflects all commits in the remote branch.
-```
+# With merge (safer for shared branches)
 git pull
 git push
 ```
-## Relative Refs
-Shortcuts or references that allow you to identify commits relative to their current position in the commit history. They provide a convenient way to specify commits without needing to know or remember their full commit hashes.
-- ### Caret `^` Operator
-  Moving upwards one commit at a time with `^`
-  ```
-  git checkout main^
-  ```
-- ### Tilde `~` Notation
-  Moving upwards a number of times with `~`
-  ```
-  git checkout HEAD~3
-  ```
-## Git Remote
-- ### Git Clone
-A command to create a copy of an existing Git repository on your local machine.
+
+---
+
+## Relative References
+
+Relative refs let you navigate commit history without needing full commit hashes.
+
+### Caret `^` — Move Up One Commit
+
+```bash
+git checkout main^
 ```
-git clone [URL]
+
+### Tilde `~` — Move Up N Commits
+
+```bash
+git checkout HEAD~3
 ```
-- ### Git Fetch
-Downloads new data from the remote repository but does not integrate it into your working branch. It updates your local copy of remote branches, tags, and commits, allowing you to see what changes have occurred in the remote repository.
+
+---
+
+## Remote Repositories
+
+### Cloning — `git clone`
+
+Create a local copy of a remote repository.
+
+```bash
+git clone <URL>
 ```
+
+---
+
+### Fetching — `git fetch`
+
+Download changes from the remote without integrating them into your working branch.
+
+```bash
 git fetch
 ```
-- ### Git Pull
-Integrates new data into your current working branch.
-```
-git pull [remote_name] [branch_name]
-```
-While there is a shortcut to `pull` from the current repository `origin` and merge in the `current branch`
-```
+
+---
+
+### Pulling — `git pull`
+
+Fetch and immediately merge remote changes into your current branch.
+
+```bash
+# Full form
+git pull <remote-name> <branch-name>
+
+# Shorthand — pulls from origin into current branch
 git pull
 ```
-- ### Fetch vs Pull
-`git pull` is essentially a combination of `git fetch` followed by `git merge`. <br>
-`git fetch` when you want to see what changes have been made in the remote repository without integrating them into your local branch immediately. It's useful for reviewing changes before merging or rebasing. <br>
-`git pull` when you want to fetch changes from the remote repository and automatically merge them into your current working branch. It's convenient for quickly updating your local branch with changes from the remote repository.
-- ### Main Commits Rejection
-If you work on a large collaborative team and you commit directly to main locally and try pushing you will be greeted with a message similar to this:
+
+---
+
+### Fetch vs. Pull
+
+| | `git fetch` | `git pull` |
+|---|---|---|
+| **What it does** | Downloads remote changes | Fetch + merge |
+| **Working branch** | Unchanged | Updated immediately |
+| **Best for** | Reviewing before integrating | Quickly syncing your branch |
+
+`git pull` is equivalent to running `git fetch` followed by `git merge`.
+
+---
+
+### Handling Push Rejection on Protected Branches
+
+On collaborative projects, pushing directly to `main` is often blocked by policy:
+
 ```
 ! [remote rejected] main -> main (TF402455: Pushes to this branch are not permitted; you must use a pull request to update this branch.)
 ```
-The remote rejected the push of commits directly to main because of the policy on main requiring pull requests to instead be used.
-So the solution is to create another branch called feature and push that to the remote. Also reset your main back to be in sync with the remote.
-```
+
+**If you have write access, use a feature branch:**
+
+```bash
 git checkout -b feature
 git add .
-git commit -m "Implemented feature"
+git commit -m "Implement feature"
 git push origin feature
+
+# Reset local main to match remote
 git checkout main
 git fetch origin
 git reset --hard origin/main
 ```
-However, if you don't have write access to the repository you should do the following instead:
-1- Create a fork of the repository on your GitHub account.
-2- Run the above commands.
-3- Create a pull request as a contribution to the main repository.
 
-## Git Origins
-`Origin` in Git is a convenient label for the default remote repository from which you cloned your local repository, allowing you to interact with it easily using Git commands. <br>
-`origin/main`: This type of branch is called a remote branch; remote branches have special properties because they serve a unique purpose.<br>
-Remote branches reflect the state of remote repositories (since you last talked to those remote repositories). They help you understand the difference between your local work and what work is public -- a critical step to take before sharing your work with others. <br>
-Remote branches have the special property that when you check them out, you are put into detached HEAD mode. Git does this on purpose because you can't work on these branches directly; you have to work elsewhere and then share your work with the remote (after which your remote branches will be updated).
+**If you don't have write access:**
 
-To be clear: Remote branches are on your local repository, not on the remote repository.<br>
-Lets check out a remote branch, make a commit and see what happens.
-```
+1. Fork the repository to your own GitHub account.
+2. Follow the steps above in your fork.
+3. Open a pull request to contribute back to the original repository.
+
+---
+
+## Origins & Remote Branches
+
+`origin` is the default alias for the remote repository your local repo was cloned from.
+
+`origin/main` is a **remote-tracking branch** — a local read-only snapshot of the remote's `main` as of your last communication with it. It helps you understand how your local work differs from what's published.
+
+> Checking out a remote branch puts you in detached HEAD mode by design. You cannot commit to remote branches directly; changes must go through your local branches and then be pushed.
+
+```bash
+# Inspect a remote branch (puts you in detached HEAD)
 git checkout origin/main
 git commit
+# origin/main does NOT move — it only updates when you fetch/pull
 ```
-git put us into detached HEAD mode and then did not update `origin/main` when we added a new commit. This is because `origin/main` will only update when the remote updates.
 
-### Git Bisect
-Use binary search to find the commit that introduced a bug
+---
 
-Basic bisect commands: start, bad, good
-As an example, suppose you are trying to find the commit that broke a feature that was known to work in version v2.6.13-rc2 of your project. You start a bisect session as follows:
-```
+## Debugging with Bisect
+
+Use binary search to efficiently locate the commit that introduced a bug.
+
+```bash
+# Start a bisect session
 git bisect start
-git bisect bad                 # Current version is bad
-git bisect good v2.6.13-rc2    # v2.6.13-rc2 is known to be good
+git bisect bad                  # Mark current commit as broken
+git bisect good v2.6.13-rc2     # Mark a known-good commit or tag
 ```
-Once you have specified at least one bad and one good commit, git bisect selects a commit in the middle of that range of history, checks it out, and outputs something similar to the following:
 
-Bisecting: 675 revisions left to test after this (roughly 10 steps)
-You should now compile the checked-out version and test it. If that version works correctly, type
+Git checks out a midpoint commit. Test it, then mark it:
+
+```bash
+git bisect good   # This commit works
+git bisect bad    # This commit is broken
 ```
-git bisect good
+
+Repeat until Git identifies the first bad commit. Then clean up:
+
+```bash
+git bisect reset
 ```
-If that version is broken, type
 
-```
-git bisect bad
-```
-Then git bisect will respond with something like
-
-Bisecting: 337 revisions left to test after this (roughly 9 steps)
-Keep repeating the process: compile the tree, test it, and depending on whether it is good or bad run git bisect good or git bisect bad to ask for the next commit that needs testing.
+> Bisect uses binary search, so it finds the culprit in **O(log n)** steps — typically around 10 steps even across hundreds of commits.
 
 
-<br><br>
-### I'm still in the process of learning Git! Whenever I pick up something new, I jot it down right here. Stay tuned for updates!
+*This reference is actively maintained. New commands and concepts are added as they're encountered.*
